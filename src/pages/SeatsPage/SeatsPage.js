@@ -17,10 +17,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "../../components/Footer/Footer";
 
-export default function SeatsPage() {
+export default function SeatsPage({ sucessInformation, setSucessInformation }) {
+
   const { idSessao } = useParams();
   const [seatsInfo, setSeatsInfo] = useState([]);
 	const [selectedSeats, setSelectedSeats] = useState([]);
+	const [seatsNumberInfo, setSeatsNumberInfo] = useState([]);
 	const [name, setName] = useState("");
 	const [cpf, setCpf] = useState("");
 	const navigate = useNavigate();
@@ -30,6 +32,7 @@ export default function SeatsPage() {
 		name: name,
 		cpf: cpf
 	};
+	
 
   // Resquests the information about the chosen movie in the API
   useEffect(() => {
@@ -43,9 +46,19 @@ export default function SeatsPage() {
 
 	function formSubmit(e) {
 		e.preventDefault();
+		const buyingInfo = {
+			movieName: seatsInfo.movie.title,
+			movieDay: seatsInfo.day.date,
+			movieHour: seatsInfo.name,
+			movieSeats: seatsNumberInfo,
+			movieBuyer: buyingCart.name,
+			movieCpf: buyingCart.cpf
+		}
+
+		setSucessInformation(buyingInfo);
 		
 		const prommise = axios.post('https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many', buyingCart);
-		prommise.then(response => navigate('/sucesso'));
+		prommise.then(response => navigate('/sucesso', sucessInformation));
 		prommise.catch(error => console.log(error));
 
 	}
@@ -64,6 +77,8 @@ export default function SeatsPage() {
                 isAvailable={seats.isAvailable}
 								setSelectedSeats={setSelectedSeats}
 								selectedSeats={selectedSeats}
+								seatsNumberInfo={seatsNumberInfo}
+								setSeatsNumberInfo={setSeatsNumberInfo}
 								seatIdentifier={seats.id}
               />
             ))}
@@ -117,16 +132,19 @@ export default function SeatsPage() {
   );
 }
 
-function Seats({ seatNumber, isAvailable, seatIdentifier, setSelectedSeats, selectedSeats}) {
+function Seats({ seatNumber, isAvailable, seatIdentifier, setSelectedSeats, selectedSeats, seatsNumberInfo, setSeatsNumberInfo }) {
 	const [selected, setSelected] = useState(false);
 
 	function handleSeatClick() {
 		if(isAvailable) {
 			if(selectedSeats.includes(seatIdentifier)) {
-				const remove = selectedSeats.indexOf(seatIdentifier);
-				selectedSeats.splice(remove, 1);
+				const removeSelectedSeats = selectedSeats.indexOf(seatIdentifier);
+				const removeSeatNumber = seatsNumberInfo.indexOf(seatNumber)
+				selectedSeats.splice(removeSelectedSeats, 1);
+				seatsNumberInfo.splice(removeSeatNumber, 1);
 			} else {
 				setSelectedSeats([...selectedSeats, seatIdentifier]);
+				setSeatsNumberInfo([...seatsNumberInfo, seatNumber]);
 			}
 			setSelected(!selected);
 		} else {
