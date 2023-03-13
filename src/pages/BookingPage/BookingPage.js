@@ -29,16 +29,16 @@ export default function BookingPage() {
       <Title>Selecione o horário</Title>
 
       {movieInfo.length == 0
-        ? "carregando"
+        ? "loading"
         : movieInfo.days.map((item) => (
-            <TimeContainer>
+            <TimeContainer data-test="movie-day">
               <TimeDay>
                 {" "}
                 {item.weekday} - {item.date}{" "}
               </TimeDay>
               <TimeHourContainer>
                 {item.showtimes.map((time) => (
-                  <Link to={`/assentos/${time.id}`}>
+                  <Link to={`/assentos/${time.id}`} data-test="showtime">
                     <TimeHour>{time.name}</TimeHour>
                   </Link>
                 ))}
@@ -46,7 +46,7 @@ export default function BookingPage() {
             </TimeContainer>
           ))}
 
-      <Footer movieBanner={movieInfo.posterURL} movieTitle={movieInfo.title}  moviteSessionDay={''} moviteSessionHour={''}/>
+      <Footer movieBanner={movieInfo.posterURL} movieTitle={movieInfo.title}  moviteSessionDay={''} moviteSessionHour={''} data-test="footer"/>
     </>
   );
 }

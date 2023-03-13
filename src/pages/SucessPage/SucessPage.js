@@ -8,25 +8,25 @@ export default function SucessPage({ sucessInformation }) {
 		<>
 			<SucessMessage>Pedido feito<br/> com sucesso!</SucessMessage>
 
-			<InfoWrapper>
+			<InfoWrapper data-test="movie-info">
 				<InfoTitle>Filme e sessão</InfoTitle>
 				<InfoDescription>{sucessInformation.movieName}</InfoDescription>
 				<InfoDescription>{sucessInformation.movieDay} {sucessInformation.movieHour}</InfoDescription>
 			</InfoWrapper>
 
-			<InfoWrapper>
+			<InfoWrapper data-test="seats-info">
 				<InfoTitle>Ingressos</InfoTitle>
 				{sucessInformation.movieSeats.map((seat, index) => <InfoDescription key={index}>Assento {seat}</InfoDescription>)}
 			</InfoWrapper>
 
-			<InfoWrapper>
+			<InfoWrapper data-test="client-info">
 				<InfoTitle>Comprador</InfoTitle>
 				<InfoDescription>Nome: {sucessInformation.movieBuyer}</InfoDescription>
 				<InfoDescription>CPF: {sucessInformation.movieCpf}</InfoDescription>
 			</InfoWrapper>
 
 			<Container>
-				<Link to="/">
+				<Link to="/" data-test="go-home-btn">
 					<HomeButton>Voltar pra Home</HomeButton>
 				</Link>
 			</Container>

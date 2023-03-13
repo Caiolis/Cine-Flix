@@ -20,7 +20,7 @@ export default function HomePage() {
       <Title>Selecione o filme</Title>
       <Container>
         {movies.map((item) => (
-          <Link to={`/sessoes/${item.id}`} key={item.id}>
+          <Link to={`/sessoes/${item.id}`} key={item.id} data-test="movie">
             <MovieBanners
               moviePoster={item.posterURL}
               movieName={item.title}
