@@ -24,8 +24,6 @@ export default function BookingPage() {
     prommise.catch((error) => console.log(error));
   }, []);
 
-  console.log(movieInfo);
-
   return (
     <>
       <Title>Selecione o horário</Title>
@@ -48,7 +46,7 @@ export default function BookingPage() {
             </TimeContainer>
           ))}
 
-      <Footer movieBanner={movieInfo.posterURL} movieTitle={movieInfo.title} />
+      <Footer movieBanner={movieInfo.posterURL} movieTitle={movieInfo.title}  moviteSessionDay={''} moviteSessionHour={''}/>
     </>
   );
 }

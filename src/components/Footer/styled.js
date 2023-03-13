@@ -18,6 +18,10 @@ export const Container = styled.div`
   }
 `;
 
+export const TitleContainer = styled.div`
+  width: 100%;
+`
+
 export const Title = styled.h1`
   font-family: Roboto;
   font-size: 26px;

@@ -1,10 +1,13 @@
-import { Container, Title } from './styled';
+import { Container, TitleContainer, Title } from './styled';
 
-export default function Footer({ movieBanner, movieTitle }) {
+export default function Footer({ movieBanner, movieTitle, moviteSessionDay, moviteSessionHour }) {
   return (
     <Container>
       <img src={movieBanner} alt={movieTitle} />
-      <Title>{movieTitle}</Title>
+      <TitleContainer>
+        <Title>{movieTitle}</Title>
+        {moviteSessionDay || moviteSessionHour != '' ? <Title>{moviteSessionDay} - {moviteSessionHour}</Title> : ''}
+      </TitleContainer>
     </Container>
   );
 }
