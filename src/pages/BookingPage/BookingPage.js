@@ -46,7 +46,7 @@ export default function BookingPage() {
             </TimeContainer>
           ))}
 
-      <Footer movieBanner={movieInfo.posterURL} movieTitle={movieInfo.title}  moviteSessionDay={''} moviteSessionHour={''} data-test="footer"/>
+      <Footer movieBanner={movieInfo.posterURL} movieTitle={movieInfo.title}  moviteSessionDay={''} moviteSessionHour={''}/>
     </>
   );
 }

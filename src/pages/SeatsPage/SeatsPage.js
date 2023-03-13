@@ -131,6 +131,7 @@ export default function SeatsPage({ sucessInformation, setSucessInformation }) {
               type="text"
               placeholder="Digite seu CPF..."
               required
+              value={cpf}
               onChange={(e) => setCpf(e.target.value)}
               data-test="client-cpf"
             />
@@ -150,7 +151,6 @@ export default function SeatsPage({ sucessInformation, setSucessInformation }) {
           movieTitle={seatsInfo.movie.title}
           moviteSessionDay={seatsInfo.day.weekday}
           moviteSessionHour={seatsInfo.name}
-          data-test="footer"
         />
       )}
     </>
